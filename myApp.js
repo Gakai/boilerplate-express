@@ -1,7 +1,10 @@
-let { join } = require('node:path')
+const { join } = require('node:path')
+const express = require('express')
+const bodyParser = require('body-parser')
+
 require('dotenv').config()
-let express = require('express')
-let app = express()
+
+const app = express()
 
 console.log('Hello World')
 
@@ -10,6 +13,7 @@ app.use((req, res, next) => {
 	console.log(req.method, req.path, '-', req.ip)
 	return next()
 })
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/public', express.static(join(__dirname, 'public')))
 
