@@ -18,6 +18,17 @@ app.get('/', (req, res) => {
 	res.sendFile(indexFile)
 })
 
+app.get(
+	'/now',
+	(req, res, next) => {
+		req.time = new Date().toString()
+		return next()
+	},
+	(req, res) => {
+		return res.json({ time: req.time })
+	}
+)
+
 app.get('/json', (req, res) => {
 	let message = 'Hello json'
 	if (process.env.MESSAGE_STYLE === 'uppercase') message = message.toUpperCase()
