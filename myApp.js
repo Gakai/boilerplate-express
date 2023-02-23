@@ -4,6 +4,8 @@ let app = express()
 
 console.log('Hello World')
 
+app.use('/public', express.static(join(__dirname, 'public')))
+
 app.get('/', (req, res) => {
 	const indexFile = join(__dirname, 'views', 'index.html')
 	res.sendFile(indexFile)
