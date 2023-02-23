@@ -8,6 +8,7 @@ console.log('Hello World')
 // Request Logger
 app.use((req, res, next) => {
 	console.log(req.method, req.path, '-', req.ip)
+	return next()
 })
 
 app.use('/public', express.static(join(__dirname, 'public')))
